@@ -1,119 +1,105 @@
 <!doctype html>
 
 <html lang='en'>
-<head>
-  <meta charset='utf-8'>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel='stylesheet' type = 'text/css' href='lib/bower_components/bootstrap/dist/css/bootstrap.min.css'>
-  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
-  <link rel = 'stylesheet' type  = 'text/css' href = 'styles/main.css'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' type = 'text/css' href='lib/bower_components/bootstrap/dist/css/bootstrap.min.css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
+    <link rel = 'stylesheet' type  = 'text/css' href = 'styles/main.css'>
 
-  <title>Music History Angular Refactor</title>
-</head>
-<body id='viewMusic' ng-app="SongApp" ng-controller = "SongCtrl">
-  <header>
-<!-- Navigation Element -->
-    <nav class='navbar navbar-default augment-nav container-fluid'>
-       <!-- Brand and toggle get grouped for better mobile display -->
-      <div class='navbar-header'> 
-        <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'>
-          <span class='sr-only'>Toggle navigation</span>
-          <span class='icon-bar'></span>
-          <span class='icon-bar'></span>
-        </button>
-        <a class='navbar-brand' href='#'>Sharp Tunes</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
-        <ul class='nav navbar-nav'>
-          <li id = 'refresh-music'><a href='#'>View Music <span class='sr-only'>(current)</span></a></li>
-          <li><a href='add.html'>Add Music</a></li>
-          <li><a href='#'>Profile</a></li>
-        </ul> 
-      </div><!-- /.navbar-collapse -->
-    </nav>
-  </header>
-
-
-<div class = 'container-fluid'>
-  <div class='row'>
-    <div class='col-sm-5' id = 'control-box'>
-      
-      <form class= 'form'> 
-        <div class='dropdown'>
-
-           <!-- filtering by title/album -->
-            <select  
-              ng-model="theSong"
-              ng-options="value.title group by value.album for value in songs">
-              <option>--</option>
-            </select> 
+    <title>Music History Angular Refactor</title>
+  </head>
+  <body id='viewMusic' ng-app="SongApp" ng-controller = "SongCtrl">
+    <!-- Navigation Element -->
+    <header>
+      <nav class='navbar navbar-default augment-nav container-fluid'>
+         <!-- Brand and toggle get grouped for better mobile display -->
+        <div class='navbar-header'> 
+          <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1' aria-expanded='false'>
+            <span class='sr-only'>Toggle navigation</span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+          <a class='navbar-brand' href='#'>Sharp Tunes</a>
         </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
+          <ul class='nav navbar-nav'>
+            <li id = 'refresh-music'><a href='#'>View Music <span class='sr-only'>(current)</span></a></li>
+            <li><a href='add.html'>Add Music</a></li>
+            <li><a href='#'>Profile</a></li>
+          </ul> 
+        </div><!-- /.navbar-collapse -->
+      </nav>
+    </header>
 
-        <div class='dropdown'>
-         <!-- filter albums by artist -->
-          <select  
-            ng-model="theSong"
-            ng-options="value.album group by value.artist for value in songs">
-            <option>--</option>
-          </select>  
+
+    <div class = 'container-fluid'>
+      <div class='row'>
+        <div class='col-sm-5' id = 'control-box'>
+          
+          <form class= 'form'> 
+            <div class='dropdown'>
+
+               <!-- filtering by title/album -->
+                <select  
+                  ng-model="theSong"
+                  ng-options="value.title group by value.album for value in mymusic">
+                  <option>--</option>
+                </select> 
+            </div>
+
+
+            <div class='dropdown'>
+             <!-- filter albums by artist -->
+              <select  
+                ng-model="theSong"
+                ng-options="value.album group by value.artist for value in songs">
+                <option>--</option>
+              </select>  
+            </div>
+
+            <div>
+              Song Name: <input type = "text" ng-model="newSong.title">
+            </div>
+            <div>
+              Song Album: <input type = "text" ng-model="newSong.album">
+            </div>
+            <div>
+              Song Artist: <input type = "text" ng-model="newSong.artist">
+            </div>
+            <button  ng-click="addSong()">Add to SongList</button>
+
+          </form>  
+
         </div>
+        <div class='col-sm-1' id = 'gutter'></div>
 
-        <div>
-          Song Name: <input type = "text" ng-model="newSong.title">
-        </div>
-        <div>
-          Song Album: <input type = "text" ng-model="newSong.album">
-        </div>
-        <div>
-          Song Artist: <input type = "text" ng-model="newSong.artist">
-        </div>
-        <button  ng-click="addSong()">Add to SongList</button>
-
-      </form>  
-
-    </div>
-    <div class='col-sm-1' id = 'gutter'></div>
-
-    <div class='col-sm-6' id='song-column'> 
-      <div id='song-list'>
-       <div> 
-          <div>
-            <input type="text" ng-model="searchText" />
+        <div class='col-sm-6' id='song-column'> 
+          <div id='song-list'>
+            <div> 
+              <div>
+                <input type="text" ng-model="searchText" />
+              </div>
+                <ul class = "filter-songs" ng-repeat="song in allSongsArray | filter: songSearchText">
+                  <h5>{{song.title}}</h5>
+                  <li> by {{song.artist}} on the album {{song.album}}
+                  <button ng-click="killSong(song)"> Delete </button></li>
+                </ul>
+            </div>
           </div>
-        <ul class = "filter-songs" ng-repeat="song in songs | filter: songSearchText">
-            <h5>{{song.title}}</h5>
-          <li> by {{song.artist}} on the album {{song.album}}
-          <button ng-click="killSong(song)"> Delete </button></li>
-        </ul>
-      </div>
-      </div>
+        </div>
     </div>
   </div>
-</div>
-
-
-<script data-main='javascripts/main' src ='bower_components/requirejs/require.js'></script>
-
-</body
-</html>
-
-
-
-
-
-
-
-
-
-    <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="lib/bower_components/angular/angular.min.js"></script>
-    <script src="lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <script src="app/app.js"></script>
-    <script src="app/controllers/songs.js"></script>
-   
+      <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="lib/bower_components/angular/angular.min.js"></script>
+      <script src="app/app.js"></script>
+      <script src="app/controllers/songs.js"></script>
   </body>
 </html>
+
+
+
+  

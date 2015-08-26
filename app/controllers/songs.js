@@ -1,7 +1,7 @@
 
 app.controller("SongCtrl", function($scope,$q) {
   $scope.theSong ="";
-
+  $scope.allSongsArray=[];
 
   $scope.newSong = {
     title: "",
@@ -9,18 +9,15 @@ app.controller("SongCtrl", function($scope,$q) {
     album: ""
   };
 
-
-
  $scope.killSong = function(song) {
-    var songIndex = $scope.songs.indexOf(song);
+    var songIndex = $scope.allSongsArray.indexOf(song);
     if (songIndex >= 0) {
-      $scope.songs.splice(songIndex, 1);
+      $scope.allSongsArray.splice(songIndex, 1);
     }
   };
 
-
   $scope.addSong = function() {
-    $scope.songs.push({
+    $scope.allSongsArray.push({
       title: $scope.newSong.title,
       artist: $scope.newSong.artist,
       album: $scope.newSong.album
@@ -33,29 +30,63 @@ app.controller("SongCtrl", function($scope,$q) {
     };
   };
 
-  function getSongList(){
-   return $q(function(resolve,reject){
 
-     $.ajax({
-       url:"../../data/songs.json"
-     })
-     .done(function(response){
-       resolve(response.songs);
-     })
-     .fail(function(xhr, status, error){
-       reject(error);
-     });
-   });
- }
+  function getSongs() {
+    var deferred = $q.defer();
 
-   getSongList()
-   .then(
-     function(promiseResolutionData){
-     $scope.songs = promiseResolutionData;
-     },
+    $.ajax({
+       url:"data/songs.json"
+    })
+    .done(function(response){
+      deferred.resolve(response);
+    })
+    .fail(function(xhr, status, error){
+      deferred.reject(error);
+    });
+  return deferred.promise;
+
+  }
+
+  getSongs()
+    .then(
+      function(promiseResolutionData){
+        for (var i = 0; i < promiseResolutionData.mymusic.length; i++){
+          $scope.allSongsArray.push(promiseResolutionData.mymusic[i]);
+          console.log($scope.allSongsArray);
+        }
+        console.log(promiseResolutionData);
+      },
+
      function(error){
-     console.log("error", error);
+      console.log("error", error);
      });
+
+
+function getMoreSongs() {
+    var deferred = $q.defer();
+
+    $.ajax({
+       url:"data/songs2.json"
+    })
+    .done(function(response){
+      deferred.resolve(response);
+    })
+    .fail(function(xhr, status, error){
+      deferred.reject(error);
+    });
+  return deferred.promise;
+
+  }
+  getMoreSongs()
+    .then(
+      function(promiseResolutionData){
+        for (var i = 0; i < promiseResolutionData.mymusic.length; i++){
+          $scope.allSongsArray.push(promiseResolutionData.mymusic[i]);
+        }
+      },
+      function(error){
+        console.log("error", error);
+      });
 });
  
 
