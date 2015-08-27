@@ -1,0 +1,76 @@
+body {
+  background: #90C3D4 url("../images/sky-background.jpg") no-repeat 50% 50% fixed;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  font-family: 'Lato', sans-serif !important;
+  color: white;
+  text-shadow: 2 2 3px #FF0000;
+}
+
+li {
+  list-style: none;
+}
+
+.input {
+  color: black;
+}
+
+form {
+  margin: 25px;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.inline {
+ display: inline;
+}
+
+.buttonGrp {
+  margin-top: 25px;
+}
+
+.addPadding {
+  padding: 15px 10px 15px 10px;
+  border: 7px solid white;
+  border-radius: 20px;
+}
+
+#song-column {
+  background-color: #2959ab;
+  border-radius: 20px;
+  width: 45%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 25px 25px 15px 25px;
+}
+
+#control-box {
+  border: 1px solid black;
+  background-color: #0B2C63;
+  border-radius: 20px;
+  width: 45%;
+  margin: auto; 
+}
+
+.big {
+  font-size: 1.5em !important;
+  font-style: bold !important;
+}
+
+@media screen and (max-width: 900px) {
+  #weatherMain,
+  #forecastTarget {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #weatherMain,
+  #forecastTarget {
+    width: 95%;
+  }
+}
