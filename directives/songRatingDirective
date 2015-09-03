@@ -1,0 +1,26 @@
+app.directive('musicHistorySongRating', function() {
+	return {
+		restrict : "E",
+		scope: {
+			selectedSong: "=song",
+      maxRating: "="
+		},
+    templateUrl: "partials/rated-songs.html",
+    link: function(scope, elem, attrs) {
+      function setStars() {
+        scope.stars = [];
+        var rating = parseInt(scope.selectedSong.rating);
+        for (var i = 0; i < scope.maxRating; i++) {
+          var clazz = (rating <= i) ? "star--empty" : "star--filled";
+          scope.stars.push({ class : clazz });
+        }
+      }
+      scope.$watch('selectedSong', function(value) {
+        console.log('value changed');
+        scope.selectedSong = value;
+        setStars();
+      });
+      setStars();
+    }
+	};
+});

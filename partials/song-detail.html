@@ -1,4 +1,4 @@
-<ul class = "filter-songs" ng-repeat="oneSong in allSongsArray | filter: {{Id:id}}">
-  <h5>{{oneSong.id}}. {{oneSong.title  | capitalize}}</h5>
-  <li> by {{oneSong.artist | capitalize}} on the album {{oneSong.album | capitalize}} published in {{oneSong.year}}  
+<ul>
+  <h5>{{detail.songDetail.$id}} {{detail.songDetail.title}}</h5>
+  <li> by {{detail.songDetail.artist}} on the album {{detail.songDetail.album}} published in {{detail.songDetail.year}}  
 </ul>

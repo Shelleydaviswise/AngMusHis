@@ -1,9 +1,10 @@
 
 <a href = "#/songs/addSong"><h3>Create a new Song</h3></a>
+
 <div id='song-list'>
-  <div ng-repeat='oneSong in allSongsArray | filter:songSearchText'>
-    <a href="#/songs/{{song.id}}">
-      <h4>{{oneSong.title | capitalize}}</h4>
+  <div ng-repeat='oneSong in allSongsArray | filter: songSearchText'>
+    <a href="/#/songs/{{oneSong.$id}}">
+      <h4>{{oneSong.title}}</h4>
 
 
     </a>

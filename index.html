@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html  ng-app="SongApp" lang='en'>
+<html lang='en'>
   <head>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,7 @@
 
     <title>Music History Angular Refactor</title>
   </head>
-  <body id='viewMusic' ng-controller = "SongCtrl">
+  <body id='viewMusic'  ng-app="SongApp">
     <!-- Navigation Element -->
     <header>
       <nav class='navbar navbar-default augment-nav container-fluid'>
@@ -36,71 +36,19 @@
       </nav>
     </header>
 
-<div ng-view> </div>
+    <div ng-view> </div>
 
-  <!--   <div class = 'container-fluid'>
-      <div class='row'>
-        <div class='col-sm-5' id = 'control-box'>
-          
-          <form class= 'form'> 
-            <div class='dropdown'>
-               <!-filtering by artist -->
-             <!--    <select  
-                  ng-model="theSong"
-                  ng-options="value.artist for value in allSongsArray">
-                  <option>-</option>
-                </select> 
-            </div> -->
-
-
-            <!-- <div class='dropdown'> -->
-             <!-- filter by album -->
-       <!--        <select  
-                ng-model="theSong"
-                ng-options="value.album for value in allSongsArray">
-                <option>-</option>
-              </select>  
-            </div> -->
-
-           <!--  <div>
-              Song Name: <input type = "text" ng-model="newSong.title">
-            </div>
-            <div>
-              Song Album: <input type = "text" ng-model="newSong.album">
-            </div>
-            <div>
-              Song Artist: <input type = "text" ng-model="newSong.artist">
-            </div>
-            <button  ng-click="addSong()">Add to SongList</button>
-
-          </form>  
- -->
-      <!--   </div>
-        <div class='col-sm-1' id = 'gutter'></div>
-
-        <div class='col-sm-6' id='song-column'> 
-          <div id='song-list'>
-            <div> 
-                <ul class = "filter-songs" ng-repeat="oneSong in allSongsArray | filter: songSearchText">
-                  <h5>{{oneSong.title}}</h5>
-                  <li> by {{oneSong.artist}} on the album {{oneSong.album}}
-                  <button ng-click="killSong(oneSong)"> Delete </button></li>
-                </ul>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div> -->
+  
 
       <script src="lib/bower_components/jquery/dist/jquery.min.js"></script>
       <script src="lib/bower_components/angular/angular.min.js"></script>
       <script src="lib/bower_components/angular-route/angular-route.js"></script>
+      <script src="lib/bower_components/firebase/firebase.js"></script>
+      <script src="lib/bower_components/angularfire/dist/angularfire.min.js"></script>
       <script src="app/app.js"></script>
-      <script src="app/factories/song-storage.js"></script>
       <script src="app/controllers/SongController.js"></script>
       <script src="app/controllers/SongAddController.js"></script>
       <script src="app/controllers/SongDetailController.js"></script>
-      <script src="app/filters/capitalize.js"></script>
   </body>
 </html>
 

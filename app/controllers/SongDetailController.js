@@ -1,22 +1,14 @@
 
 
 app.controller("SongDetailCtrl", 
-["$scope", "$q","song-storage", 
-  function($scope,$q, $routeParams, song_storage ) {
+	["$routeParams", 
+	"$firebaseObject",
+  function($routeParams, $firebaseObject) {
 
-  $scope.allSongsArray=[];
-  $scope.id=$routeParams.songId
-  
-    song_storage.then(
-      function(promiseResolutionData) {
-      console.log("promiseResolutionData", promiseResolutionData);
-      $scope.allSongsArray = promiseResolutionData;
-      },
-      function(promiseRejectionError) {
-      console.log("error", promiseRejectionError);
-      }
-    );
-  }
-]);
+    var ref = new Firebase("https://torrid-torch-3031.firebaseio.com/songs" + $routeParams.songId);
+  // download the data into a local object
+      this.songsDetail = $firebaseObject(ref);
+
+  }]);
  
 

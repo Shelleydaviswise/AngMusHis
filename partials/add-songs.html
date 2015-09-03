@@ -1,10 +1,17 @@
- <div>
-    Song Name: <input type = "text" ng-model="newSong.title">
-  </div>
-  <div>
-    Song Album: <input type = "text" ng-model="newSong.album">
-  </div>
-  <div>
-    Song Artist: <input type = "text" ng-model="newSong.artist">
-  </div>
-  <button  ng-click="addSong()">Add to SongList</button>
+<form>
+<div>
+		Song Name: <input type = "text" ng-model="newSong.title">
+	</div>
+	<div>
+		Song Album: <input type = "text" ng-model="newSong.album">
+	</div>
+	<div>
+		Song Artist: <input type = "text" ng-model="newSong.artist">
+	</div>
+	<div>
+		Song Year: <input type = "text" ng-model="newSong.year">
+	</div>
+</form>
+<button  ng-click="addSong()">Add to SongList</button>
+
+

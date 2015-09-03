@@ -1,10 +1,10 @@
 body {
-  background: #90C3D4;
+  background: #90C3D4 url("../images/sky-background.jpg") no-repeat 50% 50% fixed;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
   font-family: 'Lato', sans-serif !important;
-  color: white;
+  color: gray;
   text-shadow: 2 2 3px #FF0000; }
 
 li {

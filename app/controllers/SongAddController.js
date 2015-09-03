@@ -1,27 +1,23 @@
 
 app.controller("SongAddCtrl", 
-["$scope","$q", 
-  function($scope,$q) {
-  $scope.allSongsArray=[];
-  
-  $scope.newSong = {
-    id: "",
-    title: "",
-    artist: "",
-    album: "",
-    year: ""
-  };
+    ["$scope",
+    "$firebaseArray",
+    function($scope, $firebaseArray) {
+        var ref = new Firebase("https://torrid-torch-3031.firebaseio.com/songs");
+  // download the data into a local object
+      $scope.allSongsArray= $firebaseArray(ref);
+    
+      $scope.newSong = {};
 
-  $scope.addSong = function(){
-    $scope.allSongsArray.push({
-      id: $scope.newSong.id,
-      title: $scope.newSong.title,
-      artist: $scope.newSong.artist,
-      album: $scope.newSong.album,
-      year: $scope.newSong.year
-    });
-    $scope.newSong = "";
-  };
-   
-}
-]);
+
+    $scope.addSong = function() {
+      $scope.allSongsArray.$add({
+        title: $scope.newSong.title,
+        artist: $scope.newSong.artist,
+        album: $scope.newSong.album
+      });
+      $scope.newSong = "";
+    };
+  }]
+);
+

@@ -34,6 +34,41 @@
             "artist": "Van Morrison",
             "album": "Too Long In Exile",
             "year": 1993
+        },
+        {   
+            "id": 6,
+            "title":"Dog and Butterfly",
+            "artist": "Heart",
+            "album":"Dog and Butterfly",
+            "year":1978
+        },
+        {   
+            "id": 7,
+            "title":"Church",
+            "artist": "Lyle Lovett",
+            "album":"Joshua Judges Ruth",
+            "year":1992
+        },
+        {  
+            "id": 8,
+            "title":"Octoroon",
+            "artist": "Laura Love",
+            "album":"Octoroon",
+            "year":1997
+        },
+        {   
+            "id": 9,
+            "title":"Somebody to Love",
+            "artist": "Queen",
+            "album":"A Day at the Races",
+            "year":1976
+        },
+        {   
+            "id": 10,
+            "title":"Moondance",
+            "artist": "Van Morrison",
+            "album":"Moondance",
+            "year":1970
         }
     ]
 }
